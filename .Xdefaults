@@ -1,0 +1,31 @@
+URxvt.perl-ext-common:  default,matcher,clipboard,vtwheel
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.url-launcher:     chrome
+URxvt.matcher.button:   1
+!! URxvt.font: xft:droidsansmono:size=10.7
+!! URxvt.font: xft:profontmono:size=10.7
+URxvt.font: xft:Roboto Mono:size=8
+URxvt.clipboard.autocopy:   true
+
+!-- Xft settings -- !
+Xft.dpi:        116
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hinstyle:   full
+
+URxvt.letterSpace: -2
+URxvt.lineSpace: 1
+urxvt*termName: rxvt
+urxvt*scrollBar:false
+urxvt*cursorBlink:  true
+urxvt*cursorUnderline: true
+urxvt*cursorColor:  #ececec
+URxvt.internalBorder:   10
+URxvt*saveLines: 12000
+     
+urxvt*depth: 32
+urxvt.background: [100]#2b303b
+URxvt*urgentOnBell: true

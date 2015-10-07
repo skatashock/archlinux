@@ -1,0 +1,194 @@
+exec --no-startup-id compton -b
+
+set $mod Mod4
+hide_edge_borders both
+new_float pixel 1
+font pango:Liberation Sans 13px
+#font pango:Envy Code R 13px
+floating_modifier $mod
+
+for_window [class="^.*"] border pixel 1
+
+gaps inner 10
+gaps outer 0
+
+smart_borders on
+smart_gaps on
+
+# change border style
+bindsym $mod+t border normal
+bindsym $mod+y border 1pixel
+bindsym $mod+u border none
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Toggle movement
+bindsym $mod+a workspace back_and_forth
+bindsym $mod+Shift+a move container to workspace back_and_forth
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
+
+# start a terminal
+bindsym $mod+Return exec urxvt -tn rxvt-unicode-256color
+
+#start chromium
+bindsym $mod+c exec chromium --force-device-scale-factor=1
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec --no-startup-id dmenu_run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+b focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Name the workspaces
+set $tag1 "1 0001  "
+set $tag2 "2 0010  "
+set $tag3 "3 0011  "
+set $tag4 "4 0100  "
+set $tag5 "5 0101  "
+set $tag6 "6 0110  "
+set $tag7 "7 0111  "
+set $tag8 "8 01000  "
+set $tag9 "9 01001"
+
+# switch to workspace
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8
+bindsym $mod+9 workspace $tag9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+
+# layout
+# bindsym XF86HomePage exec /home/sktshck/.i3/i3-load-generic.sh
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# colors
+
+#class                      border  bg      text
+client.focused              #343d46 #72869b #c0c5ce
+client.focused_inactive     #242932 #4b515f #53575f
+client.unfocused            #242932 #4b515f #53575f
+client.urgent               #cd989a #cd989a #2e3436
+client.background           #1d1d1d
+
+bindsym $mod+r mode "resize"
+
+# volume adjustment
+bindsym XF86AudioMute exec --no-startup-id "amixer -q sset Master toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q sset Master 5%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q sset Master 5%-"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command ~/.i3/conky
+    tray_output none
+    strip_workspace_numbers yes
+    position top
+    mode dock
+    font pango:Roboto, Font Awesome 11.5px
+    #font pango:Envy Code R, Font Awesome 13px
+    colors {
+        background #1c1f26
+        statusline #2D2D2D
+        #class             border  bg      text
+        focused_workspace  #343d46 #343d46 #c0c5ce
+        active_workspace   #343d46 #343d46 #53575f
+        inactive_workspace #242932 #242932 #53575f
+        urgent_workspace   #2d2d2d #2d2d2d #cad0c4
+    }
+}

@@ -1,0 +1,73 @@
+background        		no
+out_to_console    		yes
+out_to_x      			no
+update_interval   		3
+total_run_times   		0
+short_units   			yes
+pad_percents      		3
+override_utf8_locale 	yes
+
+TEXT
+,[
+
+# MPD
+#{"full_text": "PLAY","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+#{"full_text":"${if_empty ${mpd_smart}} Ghost","color":"\#8fa1b3","separator":false,"separator_block_width":6},
+#{"full_text":"${else}"},
+#{"full_text":"${mpd_smart}  ","color":"\#bbbbbb","separator":false,"separator_block_width":6},
+#{"full_text":"${endif}"},
+
+#KERNEL
+{"full_text":"KERNEL","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${kernel}","color":"\#bbbbbb","separator":false,"separator_block_width":6},
+
+# Packages 
+#{"full_text":" ","color":"\#a5a5a5", "separator":false, "separator_block_width":3},
+#{"full_text":"${execpi 3600 checkupdates | wc -l}", "color":"\#8fa1b3", "separator":false},
+
+# IP Address
+
+{"full_text":"LOCAL","color":"\#8fa1b3", "separator":false,"separator_block_width":1},
+{"full_text":"${addr enp3s0}","color":"\#bbbbbb","separator":false,"separator_block_width":6},
+
+# Volume
+#{"full_text":"  ","color":"\#a5a5a5","separator":false,"separator_block_width":6},
+#{"full_text":"${exec amixer get Master -M | grep -oE "[[:digit:]]*%"}","color":"\#8fa1b3","separator":false},
+
+# Memory:
+{"full_text":"MEM","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${if_match ${memperc}<30}${mem}","color":"\#a3be8c","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${memperc}<70}${mem}","color":"\#ebcb8b","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${memperc}>=70}${mem}","color":"\#bf616a","separator":false,"separator_block_width":6},
+{"full_text":"${endif}${endif}${endif}"},    
+
+# CPU Usage
+{"full_text":"CPU","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${if_match ${cpu}<15}${cpu}%","color":"\#a3be8c","separator":false,"sepi3arator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${cpu}<55}${cpu}%","color":"\#ebcb8b","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${cpu}>=75}${cpu}%","color":"\#bf616a","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${endif}${endif}${endif}"},
+
+# CPU Temperature
+{"full_text":"TEMP","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${if_match ${acpitemp}<60}${acpitemp}°C","color":"\#a3be8c","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${acpitemp}<75}${acpitemp}°C","color":"\#ebcb8b","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${if_match ${acpitemp}>=55}${acpitemp}°C","color":"\#bf616a","separator":false,"separator_block_width":6},
+{"full_text":"${else}"},
+{"full_text":"${endif}${endif}${endif}"},
+
+# Date:
+{"full_text":"DATE","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${time %D}","color":"\#bbbbbb","separator":false,"separator_block_width":6},
+
+# Time
+{"full_text":"TIME","color":"\#8fa1b3","separator":false,"separator_block_width":1},
+{"full_text":"${time %H:%M:%S}  ","color":"\#bbbbbb","separator":false}
+]
