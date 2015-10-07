@@ -4,8 +4,6 @@ URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.url-launcher:     chrome
 URxvt.matcher.button:   1
-!! URxvt.font: xft:droidsansmono:size=10.7
-!! URxvt.font: xft:profontmono:size=10.7
 URxvt.font: xft:Roboto Mono:size=8
 URxvt.clipboard.autocopy:   true
 
@@ -25,7 +23,7 @@ urxvt*cursorUnderline: true
 urxvt*cursorColor:  #ececec
 URxvt.internalBorder:   10
 URxvt*saveLines: 12000
-     
+
 urxvt*depth: 32
 urxvt.background: [100]#2b303b
 URxvt*urgentOnBell: true

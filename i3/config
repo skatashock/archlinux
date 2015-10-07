@@ -4,7 +4,6 @@ set $mod Mod4
 hide_edge_borders both
 new_float pixel 1
 font pango:Liberation Sans 13px
-#font pango:Envy Code R 13px
 floating_modifier $mod
 
 for_window [class="^.*"] border pixel 1
@@ -181,7 +180,6 @@ bar {
     position top
     mode dock
     font pango:Roboto, Font Awesome 11.5px
-    #font pango:Envy Code R, Font Awesome 13px
     colors {
         background #1c1f26
         statusline #2D2D2D
